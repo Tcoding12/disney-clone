@@ -1,56 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, {useEffect} from 'react';
 import './App.css';
+import Header from './Components/Header';
+import Home from './Components/Home';
+import {BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-router-dom'
+import Detail from './Components/Detail';
+import Login from './Components/Login';
+import {useDispatch } from 'react-redux'
+import { setUserLogin, setSignOut} from './features/user/userSlice';
+import {auth} from './firebase'
 
 function App() {
+
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Router>
+        <Header />
+        
+        
+
+          
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/detail/:id">
+            <Detail />
+          </Route>
+          <Route path="/">
+              <Home />
+
+          </Route>
+              
+            
+        </Switch>
+          
+        
+        
+      </Router>
     </div>
   );
 }
