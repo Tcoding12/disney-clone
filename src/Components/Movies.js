@@ -31,6 +31,8 @@ function Movies() {
 }
 
 export default Movies
+
+
 const Space = styled.div`
     margin-top: 20px;
 `
